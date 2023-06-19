@@ -1,0 +1,223 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Annie+Use+Your+Telescope&family=Roboto:wght@300&display=swap');
+
+
+
+:root {
+    --main-bg-color: rgb(227, 255, 255);
+    --x-mark-color: rgb(255, 166, 0);
+    --o-mark-color: rgb(64, 120, 223);
+    --handwritten-font: 'Annie Use Your Telescope'
+  }
+
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html,
+body {
+  height: 100vh;
+  width: 100vw;
+  font-family: var(--handwritten-font),'Roboto', sans-serif;
+  background-color: var(--main-bg-color);
+}
+
+body {
+    padding: 1rem;
+}
+
+.container {
+    height: 100%;
+    width: 100%;
+    display: grid;
+    grid-template-rows: 15% 85%;
+}
+
+.main {
+    height: 100%;
+    display: grid;
+    grid-template-columns: 3fr 5fr 3fr;
+    justify-content: space-evenly;
+    align-items: start;
+    padding-top: 1rem;
+}
+
+h1 {
+    text-align: center;
+    text-shadow: 2px 2px 3px #bebebe;
+    font-size: 3rem;
+    text-decoration: dashed;
+    font-family: var(--handwritten-font);
+    margin-bottom: 1rem;
+}
+
+span:nth-child(2n) {
+    color: var(--x-mark-color);
+}
+
+span:nth-child(2n-1) {
+    color: var(--o-mark-color)
+}
+
+.game-container {
+   display: grid;
+   grid-template-columns: 1fr 1fr 1fr;
+   grid-template-rows: 1fr 1fr 1fr;
+   min-height: 200px;
+   min-width: 200px;
+   max-height: 500px;
+   max-width: 500px;
+   height: 100%;
+   width: 100%;
+   margin: 0 auto;
+   
+}
+
+.square {
+    border-bottom: 1px solid #000;
+    border-right: 1px solid #000;
+    height: 100%;
+    width: 100%;
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    font-weight: bolder;
+    font-size: 5rem;
+    -webkit-user-select: none;
+    -ms-user-select: none; 
+    user-select: none;
+    background-color: var(--main-bg-color);
+
+}
+
+.square:nth-child(3n) {
+    border-right: none;
+}
+
+.square:nth-child(6) ~ .square {
+    border-bottom: none;
+}
+
+.square-highlight:hover{
+    cursor: pointer;   
+    filter: brightness(97%);
+}
+
+.disabled:hover {
+    cursor:default;
+}
+
+.x {
+    color: var(--x-mark-color);
+    text-shadow: 4px 4px 5px #bebebe;
+}
+
+.o {
+    color: var(--o-mark-color);
+    text-shadow: 4px 4px 5px #bebebe;
+}
+
+#show-turn {
+    text-align: center;
+}
+
+.menu {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
+    justify-self: end;
+    gap: 0.5rem;
+}
+
+label {
+    font-family: var(--handwritten-font);
+    font-size: 1.5rem;
+    margin-right: 5px;
+}
+
+input {
+    height: 1.5rem;
+    border-radius: 6px;
+    border: 1px solid var(--o-mark-color);
+    width: 10rem;
+    padding-left: 5px;
+}
+
+input:focus {
+    outline: none;
+    
+}
+
+button {
+    background-color: transparent;
+    border: 1px solid var(--o-mark-color);
+    border-radius: 6px;
+    width: 7rem;
+    color: var(--o-mark-color);
+    font-family: var(--handwritten-font);
+    font-size: 1.5rem;
+    text-align: center;
+    margin: 0 auto;
+}
+
+button:hover {
+    cursor: pointer;
+    background-color: var(--o-mark-color);
+    color: white;
+}
+
+.highlight {
+    filter:saturate(250%)
+}
+
+.red-border {
+    border: 1px solid red;
+}
+
+p {
+    font-size: 2rem;
+}
+
+.win-o {
+    color: var(--o-mark-color);
+}
+
+.win-x {
+    color: var(--x-mark-color);
+}
+
+@media only screen and (max-width: 1088px) {
+    .main {
+        grid-template-columns: 1fr;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .menu {
+        justify-self: center;
+    }
+}
+
+@media only screen and (max-width: 400px) {
+    h1 {
+        font-size: 2rem;
+    }
+
+    p {
+        font-size: 1.5rem;
+    }
+}
+
+@media only screen and (max-width: 280px) {
+    label {
+        font-size: 1.2rem;
+    }
+
+    input {
+        width: 8rem;
+    }
+}
