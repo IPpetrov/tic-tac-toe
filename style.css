@@ -55,6 +55,10 @@ h1 {
     margin-bottom: 1rem;
 }
 
+#show-turn, label {
+    text-shadow: 4px 4px 5px #bebebe;
+}
+
 span:nth-child(2n) {
     color: var(--x-mark-color);
 }

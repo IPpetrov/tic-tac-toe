@@ -23,6 +23,7 @@ const game = (() => {
     const showTurn = document.getElementById("show-turn");
     const resetButton = document.getElementById("reset-button");
     const startButton = document.getElementById("start-button");
+    const newButton = document.getElementById("start-new-button");
     const player1 = document.getElementById("player1")
     const player2 = document.getElementById("player2")
     let playerOneMoves = [];
@@ -122,6 +123,10 @@ const game = (() => {
             return
         }
         else {
+            player1.disabled = true;
+            player2.disabled = true;
+            gameOver = false;
+            startButton.disabled = true;
             cell.forEach((element) => {
                 element.classList.add("square-highlight");
             })
@@ -143,14 +148,14 @@ const game = (() => {
                             if (checkDraw() && !checkWinner()) {
                                 showTurn.innerHTML = "Nobody wins this time.."
                                 gameOver = true;
-                                StopGame()
+                                stopGame()
                             }
                             else if (!checkWinner()) {
                                 turn = "o";
                                 showTurn.innerHTML = player2.value + "'s turn!";
                             }
                             else {
-                                StopGame()
+                                stopGame()
                             }
                         }
                         else {
@@ -161,14 +166,14 @@ const game = (() => {
                             if (checkDraw() && !checkWinner()) {
                                 showTurn.innerHTML = "Game is DRAW!"
                                 gameOver = true;
-                                StopGame()
+                                stopGame()
                             }
                             else if (!checkWinner()) {
                                 turn = "x";
                                 showTurn.innerHTML = player1.value + "'s turn!";
                             }
                             else {
-                                StopGame()
+                                stopGame()
                             }
                         }
                     } 
@@ -179,7 +184,7 @@ const game = (() => {
     
 
     
-    function StopGame() {
+    function stopGame() {
         cell.forEach((element) => {
             if (element.innerHTML == "") {
                 element.classList.add("disabled");
@@ -188,5 +193,24 @@ const game = (() => {
         })
     }
 
-    return {turn, checkWinner, gameOver, playerOneMoves, playerTwoMoves, checkDraw, player1, player2}
+    newButton.addEventListener("click", () => {
+        startButton.disabled = false;
+        player1.disabled = false;
+        player1.value = "";
+        player2.disabled = false;
+        player2.value = "";
+        showTurn.innerHTML = "Add names and press Start to play!"
+            gameBoard.board.fill(null);
+            playerOneMoves = [];
+            playerTwoMoves = [];
+            cell.forEach((element) => {
+                element.innerHTML = "";
+                element.classList.add("disabled");
+                element.classList.remove("square-highlight", "o", "x", "highlight");
+                showTurn.classList.remove("o","x", "win-x", "win-o")
+                turn = "x";
+                gameOver = true;
+            }) 
+    })
+
 })();
